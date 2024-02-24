@@ -66,3 +66,40 @@ function Alias-CommitTestEnvironment {
 }
 
 New-Alias -ErrorAction SilentlyContinue -Name gtenv -Value Alias-CommitTestEnvironment
+
+function Alias-CreatePR {
+    $base_branch = "develop"
+    $head_reference = "HEAD -> "
+    $head_reference_pattern = "$head_reference*"
+    $current_commit_references = $(git show --format="%D" --no-patch HEAD) -split ', '
+
+    foreach($reference in $current_commit_references) {
+        if ($reference -like $head_reference_pattern) {
+            $current_branch = $reference -replace $head_reference
+        }
+    }
+
+    if (!$current_branch) {
+        Write-Error "No references found on current commit, request can't be created. Are you in the detached HEAD state?"
+        exit 1
+    }
+
+    $remotes = $(git remote show -n) -split '\n'
+    $github_remote_pattern = "https://github.com/*"
+    foreach($remote in $remotes) {
+        $remote_link = $(git remote get-url $remote)
+        if ($remote_link -like $github_remote_pattern) {
+            $link = $remote_link -replace "\.git"
+        }
+    }
+
+    if (!$link) {
+        Write-Error "Can't find suitable remote. Currently only GitHub requests are supported"
+        Exit 1
+    }
+
+    Start-Process "$link/compare/$base_branch...$current_branch"
+}
+
+# Use force because gpr already exists in the psgit plugin (for `git pull rebase`)
+New-Alias -Force -Name gpr -Value Alias-CreatePR
