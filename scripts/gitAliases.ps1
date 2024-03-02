@@ -103,3 +103,14 @@ function Alias-CreatePR {
 
 # Use force because gpr already exists in the psgit plugin (for `git pull rebase`)
 New-Alias -Force -Name gpr -Value Alias-CreatePR
+
+function Alias-SelectBranch {
+    $raw_branch = $(git branch | fzf)
+    $branch = $raw_branch -replace "\* " -replace "  "
+    if (!$branch) {
+        return;
+    }
+    git switch $branch
+}
+
+New-Alias -ErrorAction SilentlyContinue -Name gbsl -Value Alias-SelectBranch
