@@ -23,3 +23,10 @@ function Alias-ChangeDirectoryToTheThirdParent {
 }
 
 New-Alias -ErrorAction SilentlyContinue -Name .... -Value Alias-ChangeDirectoryToTheThirdParent
+
+function Alias-StartNeoVim {
+    nvim -u $HOME/.configs/nvim/init.lua $ARGS
+}
+
+New-Alias -ErrorAction SilentlyContinue -Name v -Value Alias-StartNeoVim
+New-Alias -ErrorAction SilentlyContinue -Name vim -Value Alias-StartNeoVim
