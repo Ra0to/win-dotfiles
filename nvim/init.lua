@@ -85,12 +85,13 @@ require("lazy").setup({
     {'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
     {'mbbill/undotree'},
     {'rebelot/kanagawa.nvim'},
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+    {"catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    {"folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, }
 })
 
 --- Colorscheme
 
-vim.api.nvim_exec("colorscheme catppuccin-mocha", true)
+vim.api.nvim_exec("colorscheme tokyonight-moon", true)
 
 --- Telescope configuration
 
