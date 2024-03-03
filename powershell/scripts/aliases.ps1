@@ -30,3 +30,14 @@ function Alias-StartNeoVim {
 
 New-Alias -ErrorAction SilentlyContinue -Name v -Value Alias-StartNeoVim
 New-Alias -ErrorAction SilentlyContinue -Name vim -Value Alias-StartNeoVim
+
+function Alias-SelectItemFromHistory {
+    $command = $(bat $env:APPDATA\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt | Sort-Object | Get-Unique | fzf)
+    if (!$command) {
+        return
+    }
+
+    Invoke-Expression $command
+}
+
+New-Alias -ErrorAction SilentlyContinue -Name his -Value Alias-SelectItemFromHistory
