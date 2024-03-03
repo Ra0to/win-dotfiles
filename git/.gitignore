@@ -1,0 +1,9 @@
+ProfilerSnapshots/
+.mbatishchev
+.ra0to
+
+# Unity doesn't support file names with dot prefix
+_mbatishchev
+_mbatishchev.meta
+_ra0to
+_ra0to.meta

@@ -29,6 +29,7 @@
   - Add tools location to the PATH environment variable.
   - Restart a terminal and check if the command `adb --version` executes successfully.
 - Configure search paths for the build installation function.
+- Run `scripts/create-symlinks.ps1` script.
 
 ### Neovim setup
 
