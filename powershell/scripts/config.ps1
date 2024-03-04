@@ -1,4 +1,5 @@
 # PoshGit
+
 $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $true
 $GitPromptSettings.DefaultPromptSuffix = " > "
 
@@ -13,3 +14,7 @@ function Get-ShortPrompt {
 
     return Split-Path $PWD -Leaf
 }
+
+# FZF
+
+$env:FZF_DEFAULT_OPTS = "--layout=reverse --inline-info --height 25%"
