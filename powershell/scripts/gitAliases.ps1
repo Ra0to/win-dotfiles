@@ -114,3 +114,10 @@ function Alias-SelectBranch {
 }
 
 New-Alias -ErrorAction SilentlyContinue -Name gbsl -Value Alias-SelectBranch
+
+# TODO fix duplication with psgit
+Function Alias-discard {
+  git clean -fd;
+  git restore $(git rev-parse --show-toplevel);
+}
+New-Alias -ErrorAction SilentlyContinue -Name gdis -Value Alias-discard
