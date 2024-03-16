@@ -15,6 +15,7 @@
 - [bat](https://github.com/sharkdp/bat) - a `cat` clone with wings.
 - [ripGrep](https://github.com/BurntSushi/ripgrep) - `ripgrep` recursively searches directories for a regex pattern while respecting your gitignore.
 - [fzf](https://github.com/junegunn/fzf) - a command-line fuzzy finder.
+- [fd](https://github.com/sharkdp/fd) - simple, fast and user-friendly alternative to `find`.
 
 ## Installation guide
 
