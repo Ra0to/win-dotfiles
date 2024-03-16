@@ -86,18 +86,62 @@ require("lazy").setup({
     {'mbbill/undotree'},
     {'rebelot/kanagawa.nvim'},
     {"catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    {"folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, }
+    {"folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {}, },
+    {'axkirillov/easypick.nvim', dependencies = 'nvim-telescope/telescope.nvim'}
 })
 
 --- Colorscheme
 
 vim.api.nvim_exec("colorscheme tokyonight-moon", true)
 
+--- Setup custom pickers for telescope
+local easypick = require("easypick")
+
+easypick.setup({
+	pickers = {
+		{
+			name = "project-files",
+			command = "fd --type file --strip-cwd-prefix --exclude *.meta --exclude *.tga --exclude *.png --exclude *.mask --exclude *.zip --exclude *.dll",
+			previewer = easypick.previewers.default()
+		},
+		{
+			name = "all-project-files",
+			command = "fd --type file --strip-cwd-prefix",
+			previewer = easypick.previewers.default()
+		},
+		{
+			name = "unrestricted-project-files",
+			command = "fd --type file --strip-cwd-prefix --unrestricted",
+			previewer = easypick.previewers.default()
+		},
+	}
+})
+vim.keymap.set('n', '<leader><leader>', function()
+    vim.cmd("Easypick project-files")
+end)
+vim.keymap.set('n', '<leader>fa', function()
+    vim.cmd("Easypick all-project-files")
+end)
+vim.keymap.set('n', '<leader>fu', function()
+    vim.cmd("Easypick unrestricted-project-files")
+end)
+
 --- Telescope configuration
 
+require("telescope").setup {
+  defaults = {
+    -- ....
+  },
+  pickers = {
+    find_files = {
+      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
+    },
+  }
+}
+
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader><leader>', builtin.find_files, {})
+-- vim.keymap.set('n', '<leader><leader>', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fgr', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
