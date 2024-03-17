@@ -17,3 +17,4 @@ Import-Module "$PluginsPath/posh-git/src/posh-git.psd1" -arg 0,0,1
 . "$PSScriptRoot/config.ps1"
 . "$PSScriptRoot/initializeZoxide.ps1"
 . "$PSScriptRoot/fzf.ps1"
+. "$PSScriptRoot/project-utils.ps1"
