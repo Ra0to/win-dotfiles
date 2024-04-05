@@ -1,8 +1,12 @@
 function Install-Last {
-    $searchDirectory = "$HOME/Downloads";
+    $defaultSearchDirectory = "$HOME/Downloads";
     $buildFilesPattern = "*.apk";
+    $searchPath = $defaultSearchDirectory
+    if ($env:ApkSearchPath) {
+        $searchPath = $env:ApkSearchPath -split ';'
+    }
     $lastBuild = (
-        Get-ChildItem -Path $searchDirectory -File -Filter $buildFilesPattern |
+        Get-ChildItem -Recurse -Path $searchPath -File -Filter $buildFilesPattern |
         Sort-Object -Property LastWriteTime |
         Select-Object -Last 1
     ).FullName;
