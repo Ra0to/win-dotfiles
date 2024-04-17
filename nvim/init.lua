@@ -12,6 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 --- Set
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 -- From: https://github.com/ThePrimeagen/init.lua
 
 vim.api.nvim_exec("language en_US", true)
