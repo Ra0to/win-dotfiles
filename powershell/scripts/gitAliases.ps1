@@ -39,7 +39,7 @@ function Alias-GitLogFirsParent {
 New-Alias -ErrorAction SilentlyContinue -Name glogfp -Value Alias-GitLogFirsParent
 
 function Alias-LogTopCommits {
-    glog --first-parent -n 10 $args
+    glog --first-parent -n 15 $args
 }
 
 New-Alias -ErrorAction SilentlyContinue -Name gtop -Value Alias-LogTopCommits
