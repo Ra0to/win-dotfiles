@@ -98,6 +98,7 @@ function Alias-CreatePR {
         Exit 1
     }
 
+    git push;
     Start-Process "$link/compare/$base_branch...$current_branch"
 }
 
