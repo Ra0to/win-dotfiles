@@ -104,9 +104,15 @@ function Alias-CreatePR {
 # Use force because gpr already exists in the psgit plugin (for `git pull rebase`)
 New-Alias -Force -Name gpr -Value Alias-CreatePR
 
-function Alias-SelectBranch {
+function Select-Branch {
     $raw_branch = $(git branch | fzf)
-    $branch = $raw_branch -replace "\* " -replace "  "
+    $current_branch_prefix = "\* "
+    $branch = $raw_branch -replace $current_branch_prefix -replace "  "
+    return $branch;
+}
+
+function Alias-SelectBranch {
+    $branch = Select-Branch
     if (!$branch) {
         return;
     }
@@ -114,6 +120,26 @@ function Alias-SelectBranch {
 }
 
 New-Alias -ErrorAction SilentlyContinue -Name gbsl -Value Alias-SelectBranch
+
+function Alias-DeleteSelectedBranch {
+    $branch = Select-Branch
+    if (!$branch) {
+        return;
+    }
+    git branch -d $branch
+}
+
+New-Alias -ErrorAction SilentlyContinue -Name gbdsl -Value Alias-DeleteSelectedBranch
+
+function Alias-ForceDeleteSelectedBranch {
+    $branch = Select-Branch
+    if (!$branch) {
+        return;
+    }
+    git branch -D $branch
+}
+
+New-Alias -ErrorAction SilentlyContinue -Name gbdsl! -Value Alias-ForceDeleteSelectedBranch
 
 # TODO fix duplication with psgit
 Function Alias-discard {
