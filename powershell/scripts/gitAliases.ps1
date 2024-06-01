@@ -68,7 +68,7 @@ function Alias-CommitTestEnvironment {
 New-Alias -ErrorAction SilentlyContinue -Name gtenv -Value Alias-CommitTestEnvironment
 
 function Alias-CreatePR {
-    $base_branch = "develop"
+    $base_branch = "stable"
     $head_reference = "HEAD -> "
     $head_reference_pattern = "$head_reference*"
     $current_commit_references = $(git show --format="%D" --no-patch HEAD) -split ', '
