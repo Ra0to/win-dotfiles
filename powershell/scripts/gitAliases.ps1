@@ -148,3 +148,37 @@ Function Alias-discard {
   git restore $(git rev-parse --show-toplevel);
 }
 New-Alias -ErrorAction SilentlyContinue -Name gdis -Value Alias-discard
+
+Function Alias-SwitchStable {
+  git switch stable;
+}
+New-Alias -ErrorAction SilentlyContinue -Name gsws -Value Alias-SwitchStable
+
+Function Alias-SwitchOriginStable {
+  git branch -D stable;
+  git fetch --all;
+  git switch stable;
+}
+New-Alias -ErrorAction SilentlyContinue -Name gswos -Value Alias-SwitchOriginStable
+
+Function Alias-MergeStable {
+  git merge stable;
+}
+New-Alias -ErrorAction SilentlyContinue -Name gms -Value Alias-MergeStable
+
+Function Alias-MergeOriginStable {
+  git fetch --all;
+  git merge origin/stable;
+}
+New-Alias -ErrorAction SilentlyContinue -Name gmos -Value Alias-MergeOriginStable
+
+Function Alias-RebaseStable {
+  git rebase stable;
+}
+New-Alias -ErrorAction SilentlyContinue -Name grbs -Value Alias-RebaseStable
+
+Function Alias-RebaseOriginStable {
+  git fetch --all;
+  git rebase origin/stable;
+}
+New-Alias -ErrorAction SilentlyContinue -Name grbos -Value Alias-RebaseOriginStable
