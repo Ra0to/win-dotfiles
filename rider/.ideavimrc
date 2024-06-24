@@ -1,0 +1,91 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=8
+
+" Do incremental searching.
+set incsearch
+
+set ignorecase
+set smartcase
+
+set number
+set relativenumber
+set belloff=all
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" Remaps
+
+let mapleader = " "
+
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv 
+
+xnoremap <leader>p "_dP
+
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+
+nnoremap <leader>Y "+Y
+
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+nnoremap <leader>s [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+
+
+" vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+" vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+" vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+" vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+" vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+map <leader><leader> <Action>(SearchEverywhere)
+" search action
+map <leader>sa <Action>(GotoAction)
+" search class
+map <leader>sc <Action>(GotoClass)
+" search file
+map <leader>sf <Action>(GotoFile)
+" search structure
+map <leader>ss <Action>(FileStructurePopup)
+" Hover
+map <leader>h <Action>(ShowHoverInfo)
+" Errors in Current (file) Next
+map <leader>ecn <Action>(GotoNextError)
+" Errors in Current (file) previous
+map <leader>ecN <Action>(GotoPreviousError)
+" Errors Next
+map <leader>en <Action>(ReSharperGotoNextErrorInSolution)
+" Errors Previous
+map <leader>eN <Action>(ReSharperGotoPrevErrorInSolution)
+
+" Open explorer
+map <leader>pv <Action>(ActivateProjectToolWindow)
+
+" Open recent files
+map <leader>rf <Action>(RecentFiles)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+set ideajoin
+
+" For actions list see: https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
