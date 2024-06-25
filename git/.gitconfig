@@ -23,6 +23,9 @@
   autostash = true
   updateRefs = true
 
+[push]
+	autoSetupRemote = true
+
 [pull]
   autostash = true
 
